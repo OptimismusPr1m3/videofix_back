@@ -1,0 +1,35 @@
+# Python-Build-Dateien
+*.pyc
+*.pyo
+__pycache__/
+
+# Umgebungsdateien
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Django-Migrationsdateien
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# Datenbankdateien
+db.sqlite3
+
+# Medien-Uploads
+media/
+
+# Statische Dateien
+staticfiles/
+
+# Logdateien
+*.log
+
+# Konfigurationsdateien für IDEs
+.idea/
+.vscode/
+
+# Sonstige temporäre Dateien
+*.bak
+*.swp
