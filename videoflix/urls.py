@@ -20,10 +20,11 @@ from rest_framework.routers import DefaultRouter
 from django.conf.urls.static import static
 from django.conf import settings
 
-from video.views import VideoViewSet
+from video.views import VideoViewSet, UserViewSet
 
 router = DefaultRouter()
 router.register(r'videos', VideoViewSet)
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

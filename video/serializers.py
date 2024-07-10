@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+
+from accounts.models import MyUser
 from .models import VideoItem
 
 class VideoItemSerializer(serializers.HyperlinkedModelSerializer):
@@ -8,10 +10,10 @@ class VideoItemSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class MyUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ['username', 'email', 'first_name', 'last_name']
+        model = MyUser
+        fields = ['email', 'first_name', 'last_name']
                   
                   
 class UserRegistrationSerializer(serializers.ModelSerializer):
