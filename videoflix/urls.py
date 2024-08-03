@@ -19,8 +19,9 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from django.conf.urls.static import static
 from django.conf import settings
-
-from video.views import VideoViewSet, UserViewSet
+from . import views
+from video.views import VideoViewSet
+from videoflix.views import UserViewSet
 
 router = DefaultRouter()
 router.register(r'videos', VideoViewSet)
@@ -28,5 +29,14 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/accounts/', include('authemail.urls')),
+    path('api/', include(router.urls)),
+    path('signup/verify/', views.SignUpVerifyFE.as_view()),
+    path('signup/verified/', views.SignUpVerifiedFE.as_view(), name='signup_verified_page'),
+    path('signup/not_verified/', views.SignUpNotVerifiedFE.as_view(), name='signup_not_verified_page'),
+    path('password/reset/verify/', views.PasswordResetVerifyFE.as_view()),
+    path('password/reset/verified/', views.PasswordResetVerifiedFE.as_view(), name='password_reset_verified_page'),
+    path('password/reset/not_verified/', views.PasswordResetNotVerifiedFE.as_view(), name='password_reset_not_verified_page'),
+    path('password/reset/success/', views.PasswordResetSuccessFrontEnd.as_view(),
+         name='password_reset_success_page'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

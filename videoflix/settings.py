@@ -57,6 +57,7 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'accounts.MyUser'
+AUTH_EMAIL_VERIFICATION = True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -77,7 +78,10 @@ ROOT_URLCONF = 'videoflix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'videoflix/templates'),
+            #os.path.join(BASE_DIR, 'videoflix/templates/authemail'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -144,3 +148,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# hier mail zugangsdaten einfuegen --> in environment ini zu finden (nicht auf git)

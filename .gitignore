@@ -9,6 +9,7 @@ __pycache__/
 env/
 venv/
 ENV/
+environment.ini
 
 # Django-Migrationsdateien
 */migrations/*.pyc
