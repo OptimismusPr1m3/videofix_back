@@ -29,8 +29,9 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/accounts/', include('authemail.urls')),
     path('api/', include(router.urls)),
+    path('api/accounts/', include('accounts.urls')),
+    path('api/accounts/', include('authemail.urls')),
     path('signup/verify/', views.SignUpVerifyFE.as_view()),
     path('signup/verified/', views.SignUpVerifiedFE.as_view(), name='signup_verified_page'),
     path('signup/not_verified/', views.SignUpNotVerifiedFE.as_view(), name='signup_not_verified_page'),
