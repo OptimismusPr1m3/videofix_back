@@ -40,4 +40,7 @@ urlpatterns = [
     path('password/reset/not_verified/', views.PasswordResetNotVerifiedFE.as_view(), name='password_reset_not_verified_page'),
     path('password/reset/success/', views.PasswordResetSuccessFrontEnd.as_view(),
          name='password_reset_success_page'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] 
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

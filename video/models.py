@@ -10,6 +10,7 @@ class VideoItem(models.Model):
     genre = models.CharField(max_length=20)
     created_at = models.DateField(default=date.today)
     video_file = models.FileField(upload_to='videos', blank=True, null=True)
+    cover_image = models.ImageField(upload_to='covers', blank=True, null=True)
     rating = models.FloatField()
 
     def __str__(self):
