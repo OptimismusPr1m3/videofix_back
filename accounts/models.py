@@ -6,7 +6,13 @@ from authemail.models import EmailUserManager, EmailAbstractUser
 
 class MyUser(EmailAbstractUser):
     date_of_birth = models.DateField('Date of birth', null=True, blank=True)
-
+    street = models.CharField('Street', null=True, blank=True, max_length=20)
+    street_number = models.IntegerField('Streetnumber', null=True, blank=True)
+    zip_code = models.IntegerField('Zip Code', null=True, blank=True)
+    city = models.CharField('City', null=True, blank=True, max_length=20)
+    country = models.CharField('Country', null=True, blank=True, max_length=20)
+    phone_number = models.IntegerField('Phonenumber', null=True, blank=True)
+    my_videos = models.JSONField(blank=True, null=True)
     objects = EmailUserManager()
     
     

@@ -12,10 +12,15 @@ from accounts.models import MyUser
 class MyUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'email', 'first_name', 'last_name', 'date_of_birth')
-
+        fields = ('id', 'email', 'first_name', 'last_name', 'date_of_birth', 'date_joined', 'street', 'street_number', 'zip_code', 'city', 'country', 'phone_number', 'my_videos')
 
 class MyUserChangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('first_name', 'last_name', 'date_of_birth')
+        fields = ('first_name', 'last_name', 'date_of_birth', 'street', 'street_number', 'zip_code', 'city', 'country', 'phone_number')
+
+
+class MyUserVideosChangeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('my_videos',)
