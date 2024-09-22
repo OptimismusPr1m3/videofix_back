@@ -24,7 +24,8 @@ media/
 
 # Statische Dateien
 staticfiles/
-
+/static/
+/static
 # Logdateien
 *.log
 
