@@ -7,15 +7,6 @@ from video.tasks import convert_480p, convert_720p
 
 
 
-@receiver(post_save, sender=VideoItem)
-def video_post_save(sender, instance, created, **kwargs):
-    print('Video wurde gespeichert')
-    
-    if created:
-        print('New Video created !')
-        convert_480p(instance.video_file.path)
-        ##convert_720p(instance.video_file.path)
-        
 @receiver(post_delete, sender=VideoItem)
 def video_file_auto_delete(sender, instance, **kwargs):
     if instance.video_file:
