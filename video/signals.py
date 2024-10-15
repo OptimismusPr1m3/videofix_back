@@ -14,7 +14,7 @@ def video_post_save(sender, instance, created, **kwargs):
     if created:
         print('New Video created !')
         convert_480p(instance.video_file.path)
-        convert_720p(instance.video_file.path)
+        ##convert_720p(instance.video_file.path)
         
 @receiver(post_delete, sender=VideoItem)
 def video_file_auto_delete(sender, instance, **kwargs):
