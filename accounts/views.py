@@ -4,7 +4,10 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from authemail.serializers import LoginSerializer
+from rest_framework.permissions import AllowAny
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 from accounts.serializers import MyUserSerializer, MyUserChangeSerializer, MyUserVideosChangeSerializer
 
 
@@ -71,3 +74,38 @@ class MyUserMeChange(APIView):
             return Response(content, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    
+    
+class CustomLoginView(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = LoginSerializer
+
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            email = serializer.data['email']
+            password = serializer.data['password']
+            user = authenticate(email=email, password=password)
+
+            if user:
+                if user.is_verified:
+                    if user.is_active:
+                        token, created = Token.objects.get_or_create(user=user)
+                        return Response({'token': token.key},
+                                        status=status.HTTP_200_OK)
+                    else:
+                        content = {'detail': _('User account not active.')}
+                        return Response(content,
+                                        status=status.HTTP_401_UNAUTHORIZED)
+                else:
+                    content = {'detail': _('User account not verified.')}
+                    return Response(content, status=status.HTTP_401_UNAUTHORIZED)
+            else:
+                content = {'detail': _('Unable to login with provided credentials.')}
+                return Response(content, status=status.HTTP_401_UNAUTHORIZED)
+
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
