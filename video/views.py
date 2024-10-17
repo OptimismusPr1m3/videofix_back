@@ -4,6 +4,8 @@ from video.models import VideoItem
 from video.serializers import VideoItemSerializer
 from rest_framework.permissions import IsAuthenticated
 from video.tasks import convert_480p
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 'class LoginView():'
@@ -13,6 +15,10 @@ class VideoViewSet(viewsets.ModelViewSet):
     queryset = VideoItem.objects.all().order_by('-released_at')
     serializer_class = VideoItemSerializer
     permission_classes = (IsAuthenticated,)
+    
+    @method_decorator(cache_page(60 * 15))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
     def perform_create(self, serializer_class):
         print("Jetzt wirds vermutlich gespeichert !")
