@@ -19,7 +19,7 @@ class VideoViewSet(viewsets.ModelViewSet):
         if 3 == 3:
             print("ja genau !")
         video_item = serializer_class.save()
-        ##convert_480p.delay(video_item.video_file.path)
+        convert_480p.delay(video_item.video_file.path)
         print('Geil', video_item)
         return Response(
             {'message': 'Video uploaded successfully! Conversion in progress...'},

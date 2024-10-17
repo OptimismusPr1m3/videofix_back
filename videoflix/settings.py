@@ -164,5 +164,17 @@ DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')
 EMAIL_FROM = config('EMAIL_HOST_USER')
 EMAIL_BCC = config('EMAIL_HOST_USER')
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://localhost:6379/0' #Redis-Datenbank 0 für Celery
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Redis-Datenbank 1 für Caching
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
