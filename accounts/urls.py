@@ -7,7 +7,7 @@ from .views import CustomLoginView, MyUserMe, MyUserMeChange
 urlpatterns = [
     path('users/me/', MyUserMe.as_view(), name='user-me'),
     path('users/me/change/', MyUserMeChange.as_view(), name='user-me-change'),
-    path('auth/login', CustomLoginView.as_view(), name='custom-login')
+    path('auth/login/', CustomLoginView.as_view(), name='custom-login')
 ]
 
 
