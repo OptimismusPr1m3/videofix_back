@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
     'bepi.bastian-wolff.com'
 ]
 
-CORS_ALLOWED_ORIGINS = [ 'http://localhost:4200', 'http://127.0.0.1:5501']
+CORS_ALLOWED_ORIGINS = [ 'http://localhost:4200', 'http://127.0.0.1:5501', 'https://9000-idx-videoflix-1728621979876.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/','https://9000-idx-videoflix-1728621979876.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/' ]
 
 
 # Application definition
@@ -104,13 +104,22 @@ WSGI_APPLICATION = 'videoflix.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'videofix_db',
+        'USER': 'basti',  
+        'PASSWORD': 'Forellen1337',
+        'HOST': 'localhost', 
+        'PORT': '',  
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

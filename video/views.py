@@ -16,9 +16,9 @@ class VideoViewSet(viewsets.ModelViewSet):
     serializer_class = VideoItemSerializer
     permission_classes = (IsAuthenticated,)
     
-    @method_decorator(cache_page(60 * 15))
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
+    #@method_decorator(cache_page(60 * 15))
+    #def list(self, request, *args, **kwargs):
+        #return super().list(request, *args, **kwargs)
 
     def perform_create(self, serializer_class):
         print("Jetzt wirds vermutlich gespeichert !")
