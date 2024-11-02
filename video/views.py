@@ -6,7 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from video.tasks import convert_480p
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
-# Create your views here.
+from django.core.cache import cache
+
 
 'class LoginView():'
 
@@ -16,9 +17,9 @@ class VideoViewSet(viewsets.ModelViewSet):
     serializer_class = VideoItemSerializer
     permission_classes = (IsAuthenticated,)
     
-    #@method_decorator(cache_page(60 * 15))
-    #def list(self, request, *args, **kwargs):
-        #return super().list(request, *args, **kwargs)
+    @method_decorator(cache_page(60 * 15, key_prefix="video_list"))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
     def perform_create(self, serializer_class):
         print("Jetzt wirds vermutlich gespeichert !")
@@ -26,6 +27,10 @@ class VideoViewSet(viewsets.ModelViewSet):
             print("ja genau !")
         video_item = serializer_class.save()
         convert_480p.delay(video_item.video_file.path)
+
+        #cache_key = f"video_list:{self.request.path}"
+        cache.clear()
+
         print('Geil', video_item)
         return Response(
             {'message': 'Video uploaded successfully! Conversion in progress...'},

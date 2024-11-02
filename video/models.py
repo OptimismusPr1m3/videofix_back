@@ -12,6 +12,7 @@ class VideoItem(models.Model):
     video_file = models.FileField(upload_to='videos', blank=True, null=True)
     cover_image = models.ImageField(upload_to='covers', blank=True, null=True)
     rating = models.FloatField(default=1)
+    duration = models.DecimalField(max_digits=20, decimal_places=10,default=0, blank=True, null=True)
 
     def __str__(self):
         return self.title
