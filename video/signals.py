@@ -3,13 +3,14 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from .models import VideoItem
 from video.tasks import convert_480p, convert_720p
-
+from django.core.cache import cache
 
 
 
 @receiver(post_delete, sender=VideoItem)
 def video_file_auto_delete(sender, instance, **kwargs):
     if instance.video_file:
+        cache.clear()
         original_file_path = instance.video_file.path
         if os.path.isfile(original_file_path):
             os.remove(original_file_path)

@@ -13,6 +13,7 @@ class MyUser(EmailAbstractUser):
     country = models.CharField('Country', null=True, blank=True, max_length=20)
     phone_number = models.CharField('Phonenumber', null=True, blank=True, max_length=20)
     my_videos = models.JSONField(blank=True, null=True)
+    video_timestamps = models.JSONField(blank=True, null=True)
     objects = EmailUserManager()
     
     

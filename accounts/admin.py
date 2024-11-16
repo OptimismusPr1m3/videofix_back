@@ -14,7 +14,7 @@ class MyUserAdmin(EmailUserAdmin):
 									   'is_superuser', 'is_verified', 
 									   'groups', 'user_permissions')}),
 		('Important dates', {'fields': ('last_login', 'date_joined')}),
-		('Custom info', {'fields': ('date_of_birth', 'street', 'street_number', 'zip_code', 'city', 'country', 'my_videos',)}),
+		('Custom info', {'fields': ('date_of_birth', 'street', 'street_number', 'zip_code', 'city', 'country', 'my_videos', 'video_timestamps',)}),
 	)
  
 class VerifiedUserAdmin(MyUserAdmin):

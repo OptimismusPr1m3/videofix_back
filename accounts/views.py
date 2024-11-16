@@ -51,6 +51,8 @@ class MyUserMeChange(APIView):
                 user.phone_number = serializer.data['phone_number']
             if 'my_videos' in serializer.data:
                 user.my_videos = serializer.data['my_videos']
+            if 'video_timestamps' in serializer.data:
+                user.video_timestamps = serializer.data['video_timestamps']
 
             user.save()
 
@@ -67,7 +69,9 @@ class MyUserMeChange(APIView):
             
             if 'my_videos' in serializer.data:
                 user.my_videos = serializer.data['my_videos']
-                
+            if 'video_timestamps' in serializer.data:
+                user.video_timestamps = serializer.data['video_timestamps']
+
             user.save()
             
             content = {'success': _('User information for Videos changed.')}
