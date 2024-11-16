@@ -9,9 +9,6 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 
 
-'class LoginView():'
-
-
 class VideoViewSet(viewsets.ModelViewSet):
     queryset = VideoItem.objects.all().order_by('-released_at')
     serializer_class = VideoItemSerializer
@@ -22,9 +19,6 @@ class VideoViewSet(viewsets.ModelViewSet):
         return super().list(request, *args, **kwargs)
 
     def perform_create(self, serializer_class):
-        print("Jetzt wirds vermutlich gespeichert !")
-        if 3 == 3:
-            print("ja genau !")
         video_item = serializer_class.save()
         convert_480p.delay(video_item.video_file.path)
 
@@ -36,5 +30,13 @@ class VideoViewSet(viewsets.ModelViewSet):
             {'message': 'Video uploaded successfully! Conversion in progress...'},
             status=status.HTTP_201_CREATED
         )
+    def perform_update(self, serializer):
+        print('Videodetails been actualized !')
+        video_item = serializer.save()
+        cache.clear()
+        print('Cache cleared')
+        return Response(
+            {'message': 'Video details updated successfully!'},
+            status=status.HTTP_200_OK)
 
 
