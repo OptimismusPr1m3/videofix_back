@@ -23,10 +23,4 @@ class MyUserChangeSerializer(serializers.ModelSerializer):
 class MyUserVideosChangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('my_videos',)
-
-
-class MyUserVideosChangeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ('video_timestamps',)
+        fields = ('my_videos','video_timestamps',)
