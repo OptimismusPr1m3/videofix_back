@@ -62,15 +62,18 @@ class MyUserMeChange(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def patch(self, request, format=None):
-        serializer = self.serializ_class(data=request.data)
+        serializer = self.serializ_class(data=request.data, partial=True)
         if serializer.is_valid():
             user = request.user
-            if 'my_videos' in serializer.data:
-                user.my_videos = serializer.data['my_videos']
+            
+            if 'my_videos' in serializer.validated_data:
+                user.my_videos = serializer.validated_data['my_videos']
                 content = {'success': _('User information for Videos changed.')}
-            if 'video_timestamps' in serializer.data:
-                user.video_timestamps = serializer.data['video_timestamps']
+            
+            if 'video_timestamps' in serializer.validated_data:
+                user.video_timestamps = serializer.validated_data['video_timestamps']
                 content = {'success': _('User information for Stamp changed.')}
+            
             user.save()
             #content = {'success': _('User information for Videos changed.')}
             return Response(content, status=status.HTTP_200_OK)
