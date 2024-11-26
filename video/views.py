@@ -3,7 +3,7 @@ from rest_framework import viewsets, status
 from video.models import VideoItem
 from video.serializers import VideoItemSerializer
 from rest_framework.permissions import IsAuthenticated
-from video.tasks import convert_480p
+from video.tasks import convert_480p_with_thumbnail
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.core.cache import cache
@@ -20,7 +20,8 @@ class VideoViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer_class):
         video_item = serializer_class.save()
-        convert_480p.delay(video_item.video_file.path)
+        video_path = video_item.video_file.path
+        convert_480p_with_thumbnail.delay(video_item.id, video_path)
 
         #cache_key = f"video_list:{self.request.path}"
         cache.clear()

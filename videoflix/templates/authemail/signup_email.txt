@@ -1,2 +1,2 @@
 Verify your email address by clicking on this link:
-https://bepi.bastian-wolff.com/signupverify.html/?code={{ code }}
+https://storage.bastian-wolff.com/signupverify.html/?code={{ code }}

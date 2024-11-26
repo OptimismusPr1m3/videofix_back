@@ -30,11 +30,11 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '192.168.178.104',
-    'bepi.bastian-wolff.com'
+    '192.168.178.107',
+    'storage.bastian-wolff.com'
 ]
 
-CORS_ALLOWED_ORIGINS = [ 'http://localhost:4200', 'http://127.0.0.1:5501', 'https://9000-idx-videoflix-1728621979876.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/','https://9000-idx-videoflix-1728621979876.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/' ]
+CORS_ALLOWED_ORIGINS = [ 'https://bastian-wolff.de/videoflix/','https://bastian-wolff.de','https://www.bastian-wolff.de' ,'http://localhost:4200', 'http://127.0.0.1:5501', 'https://9000-idx-videoflix-1728621979876.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/','https://9000-idx-videoflix-1728621979876.cluster-rz2e7e5f5ff7owzufqhsecxujc.cloudworkstations.dev/' ]
 
 
 # Application definition
@@ -75,8 +75,10 @@ MIDDLEWARE = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-DATA_UPLOAD_MAX_MEMORY_SIZE = 209715200  # 200 MB
-FILE_UPLOAD_MAX_MEMORY_SIZE = 209715200  # 200 MB
+#DATA_UPLOAD_MAX_MEMORY_SIZE = 209715200  # 200 MB
+#FILE_UPLOAD_MAX_MEMORY_SIZE = 209715200  # 200 MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000  # 500 * 1024 * 1024 Bytes
+FILE_UPLOAD_MAX_MEMORY_SIZE = 524288000
 ROOT_URLCONF = 'videoflix.urls'
 
 TEMPLATES = [
