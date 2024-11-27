@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.forms import NON_FIELD_ERRORS
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinLengthValidator
 
 
 class AddErrorMixin(object):
@@ -57,7 +58,9 @@ class PasswordResetVerifiedForm(AddErrorMixin, forms.Form):
         password2 = self.cleaned_data['password2']
         if password != password2:
             raise forms.ValidationError(
-                _("Confirmation password doesn't match."))
+                _("Passwörter stimmen nicht überein"))
+        if len(password) < 8:
+            raise forms.ValidationError(_("Mind. 8 Zeichen"))
         return password2
 
 

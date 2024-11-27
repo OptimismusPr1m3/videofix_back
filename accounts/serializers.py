@@ -25,19 +25,3 @@ class MyUserVideosChangeSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ('my_videos','video_timestamps',)
         
-    # def validate_my_videos(self, value):
-    #     # Optional: Hier kannst du spezifische Validierungen für my_videos einfügen
-    #     if not isinstance(value, list):
-    #         raise serializers.ValidationError("my_videos must be a list.")
-    #     return value
-
-    # def validate_video_timestamps(self, value):
-    #     # Optional: Validierungen für video_timestamps
-    #     if not isinstance(value, list):
-    #         raise serializers.ValidationError("video_timestamps must be a list.")
-    #     for entry in value:
-    #         if not isinstance(entry, dict) or 'URL' not in entry or 'STAMP' not in entry:
-    #             raise serializers.ValidationError(
-    #                 "Each entry in video_timestamps must be a dictionary with 'URL' and 'STAMP'."
-    #             )
-    #     return value

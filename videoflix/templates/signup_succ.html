@@ -1,18 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Email verifiziert</title>
-<meta charset="UTF-8">
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/style1.css' %}">
-</head>
-<body>
-<h1>Deine Email wurde verifiziert !</h1>
-<p>
-<font style="font-size:24px">
-Danke, dass du deine Email verifiziert hast. Du kannst dich nun einloggen.<br><br>
-<a href="https://bastian-wolff.de/videoflix/">VideoFlix</a>
-</font>
-</p>
-</body>
+  <head>
+    <title>Email verifiziert</title>
+    <meta charset="UTF-8" />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/password_reset.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static '/styles.css' %}" />
+  </head>
+  <body>
+    <div class="header-cont">
+      <div class="header">
+        <a href="https://bastian-wolff.de/videoflix/" class="logo">
+          <img src="{% static "/img/Logo.png" %}" />
+        </a>
+      </div>
+    </div>
+
+    <div class="middle-cont">
+      <h1>Deine Email wurde verifiziert</h1>
+      <span class="link-follow" style="text-align: center"
+        >Danke, dass du deine Email verifiziert hast. <br/> Du kannst dich nun einloggen. <br/> Zurück zu 
+        <a class="link" href="https://bastian-wolff.de/videoflix/"
+          >Videoflix</a>
+        </span
+      >
+    </div>
+
+    <div class="footer-cont">
+      <div class="footer">
+        <a href="https://bastian-wolff.de/videoflix/" class="left-cont">Impressum</a>
+        <a href="https://bastian-wolff.de/videoflix/" class="left-cont">Datenschutzerklärung</a>
+      </div>
+    </div>
+  </body>
 </html>
