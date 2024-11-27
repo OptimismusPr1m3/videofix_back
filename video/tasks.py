@@ -4,6 +4,7 @@ import subprocess
 import logging
 from django.conf import settings
 from video.models import VideoItem
+from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
 
@@ -33,10 +34,7 @@ def convert_480p_with_thumbnail(video_item_id, source):
         video_item.cover_image.name = os.path.relpath(thumbnail, settings.MEDIA_ROOT)
         video_item.save()
         
-        return {
-            'video_480p': target_video,
-            'thumbnail': thumbnail
-        }
+        cache.clear()
         
     except subprocess.CalledProcessError as e:
         logger.error(f'Conversion failed for {source}: {e.stderr}')

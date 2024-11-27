@@ -11,7 +11,6 @@ from django.core.cache import cache
 @receiver(post_delete, sender=VideoItem)
 def video_file_auto_delete(sender, instance, **kwargs):
     if instance.video_file:
-        cache.clear()
         original_file_path = instance.video_file.path
         if os.path.isfile(original_file_path):
             os.remove(original_file_path)
@@ -32,6 +31,7 @@ def video_file_auto_delete(sender, instance, **kwargs):
             os.remove(instance.cover_image.path)
             print('Cover wurde geloescht')
 
+    cache.clear()
 
     # generates api url from video id (:
     # local urlstring ->http://127.0.0.1:8000/api/videos/
