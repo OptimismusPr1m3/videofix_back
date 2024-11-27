@@ -35,7 +35,7 @@ def video_file_auto_delete(sender, instance, **kwargs):
 
     # generates api url from video id (:
     # local urlstring ->http://127.0.0.1:8000/api/videos/
-    video_api_url = urljoin(f"https://storage.bastian-wolff.de/videoflix/api/videos/", f"{instance.id}/")
+    video_api_url = urljoin(f"https://storage.bastian-wolff.com/videoflix/api/videos/", f"{instance.id}/")
     print(f"Zu entfernende Video-URL: {video_api_url}")
 
     # filters users with timestamps, users without timestamps will be ignored
