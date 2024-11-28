@@ -24,7 +24,7 @@ class VideoViewSet(viewsets.ModelViewSet):
         convert_480p_with_thumbnail.delay(video_item.id, video_path)
 
         #cache_key = f"video_list:{self.request.path}"
-        #cache.clear()
+        cache.clear()
 
         print('Geil', video_item)
         return Response(

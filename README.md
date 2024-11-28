@@ -33,7 +33,30 @@ The corresponding frontend can be found here: [VideoflixFrontend](https://github
 
 Pull requests are welcome.
 
+## Testing 
 
+This project uses pytest for testing. To ensure the tests run correctly, you should use an SQLite3 database as it is designed for testing.
+
+1. Prerequisites
+    * Python 3.x
+    * SQLite3 (usually included by default with Django)
+
+
+2. Testing with pytest
+   - **pip install -r requirements.txt /**
+   - **pytest /**
+
+3. Database Configuration
+
+  **DATABASES = {**
+    **'default': {**
+      **'ENGINE': 'django.db.backends.sqlite3',**
+        **'NAME': BASE_DIR / 'db.sqlite3',**
+    **}**
+**}**
+
+4. Additional Notes 
+    * PostgreSQL is not required and should not be used for testing to ensure an optimal and fast testing environment.
 
 
 ///////////////////////////////////////////////////// GERMAN /////////////////////////////////////////////////////
@@ -72,3 +95,28 @@ Das dazughehörige Frontend findet man hier: [VideoflixFrontend](https://github.
 ## Mitwirken
 
 Pull-Requests sind willkommen.
+
+## Testing 
+
+In diesem Projekt werden die Tests mit pytest durchgeführt. Um sicherzustellen, dass die Tests korrekt ausgeführt werden, solltest du eine SQLite3-Datenbank verwenden, da diese für die Tests konzipiert wurde.
+
+1. Voraussetzungen
+    * Python 3.x
+    * SQLite3 (wird in der Regel standardmäßig mit Django verwendet)
+
+
+2. Testen mit pytest
+   - **pip install -r requirements.txt /**
+   - **pytest /**
+
+3. Konfiguration der Datenbank
+
+  **DATABASES = {**
+    **'default': {**
+      **'ENGINE': 'django.db.backends.sqlite3',**
+        **'NAME': BASE_DIR / 'db.sqlite3',**
+    **}**
+**}**
+
+4. Weitere Hinweise 
+    * PostgreSQL ist nicht erforderlich und sollte nicht für Tests verwendet werden, um eine optimale und schnelle Testumgebung zu gewährleisten.
